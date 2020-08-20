@@ -6,17 +6,17 @@ Foi escolhido como projeto o problema real de Smart Rockets, no qual se baseia e
 
 Projeto:
 
-Index.html
+Index.html - 
   Nesse arquivo html temos a base da página, contendo os imports dos scrips javascript no body além de uma tabela com as informações que consideramos relevantes e um contador de vida de cada geração.
   
-Dna.js
+Dna.js - 
   
 
-Population.js
+Population.js - 
 
 
-Rocket.js
+Rocket.js - 
 
 
-Sketch.js
+Sketch.js -
 
