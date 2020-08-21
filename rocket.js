@@ -1,14 +1,14 @@
-// Constructor function
+// Função do construtor
 function Rocket(dna) {
-    // Physics of rocket at current instance
+    // Física do foguete na instância atual
     this.pos = createVector(width / 2, height);
     this.vel = createVector();
     this.acc = createVector();
-    // Checkes rocket has reached target
+    // Checa se os foguetes atingiram o alvo
     this.completed = false;
-    // Checks if rocket had crashed
+    // Checa se o foguete caiu
     this.crashed = false;
-    // Gives a rocket dna
+    // Fornece um DNA de foguete
     if (dna) {
         this.dna = dna;
     } else {
@@ -16,45 +16,45 @@ function Rocket(dna) {
     }
     this.fitness = 0;
 
-    // Object can recieve force and add to acceleration
+    // O objeto pode receber uma força e aumentar a aceleração
     this.applyForce = function(force) {
         this.acc.add(force);
     };
-    // Calulates fitness of rocket
+    // Calcula a aptidão do foguete
     this.calcFitness = function() {
-        // Takes distance to target
+        // Distancia-se do alvo
         var d = dist(this.pos.x, this.pos.y, target.x, target.y);
 
-        // Maps range of fitness
+        // Gama de mapas de fitness
         this.fitness = map(d, 0, width, width, 0);
-        // If rocket gets to target increase fitness of rocket
+        // Se o foguete atingir o alvo, então sua aptidão aumenta
         if (this.completed) {
             this.fitness *= 10;
             tgt++;
             display[1] = tgt;
         }
-        // If rocket does not get to target decrease fitness
+        // Se o foguete não atingir o alvo, então sua aptidão diminui
         if (this.crashed) {
             this.fitness /= 10;
         }
     };
-    //Calculate accuracy
+    // Calcula a precisão
     display[2] = (display[1] / 35).toFixed(2);
 
-    //Writing in the table pt2 - Display numbers of targets, Display accuracy
+    // Escrita na tabela pt2 - Exibir o número de alvos e exibir a precisão
     document.getElementById("tgt").innerText = display[1];
     document.getElementById("acc").innerText = display[2];
 
-    // Updates state of rocket
+    // Atualiza o estado do foguete
     this.update = function() {
-        // Checks distance from rocket to target
+        // Verifica a distância do foguete ao alvo
         var d = dist(this.pos.x, this.pos.y, target.x, target.y);
-        // If distance less than 10 pixels, then it has reached target
+        // Se a distância for inferior a 10 pixels, entao o alvo atingiu o alvo
         if (d < 10) {
             this.completed = true;
             this.pos = target.copy();
         }
-        // Rocket hit the barrier
+        // Foguete atingiu a barreira
         if (
             this.pos.x > rx &&
             this.pos.x < rx + rw &&
@@ -63,18 +63,18 @@ function Rocket(dna) {
         ) {
             this.crashed = true;
         }
-        // Rocket has hit left or right of window
+        // O foguete atingiu o lado esquerdo ou direito da janela
         if (this.pos.x > width || this.pos.x < 0) {
             this.crashed = true;
         }
-        // Rocket has hit top or bottom of window
+        // O foguete atingiu a parte superior ou inferior da janela
         if (this.pos.y > height || this.pos.y < 0) {
             this.crashed = true;
         }
 
-        //applies the random vectors defined in dna to consecutive frames of rocket
+        // Aplica os vetores aleatórios definidos no DNA a quadros consecutivos do foguete
         this.applyForce(this.dna.genes[count]);
-        // if rocket has not got to goal and not crashed then update physics engine
+        // Se o foguete não atingiu a meta e não travou, então atualizar o mecanismo da física
         if (!this.completed && !this.crashed) {
             this.vel.add(this.acc);
             this.pos.add(this.vel);
@@ -82,18 +82,18 @@ function Rocket(dna) {
             this.vel.limit(4);
         }
     };
-    // displays rocket to window
+    // Exibe o foguete na janela
     this.show = function() {
-        // push and pop allow's rotating and translation not to affect other objects
+        // Permissão de push e pop para que a rotação e a translação não afete outros objetos
         push();
-        //color customization of rockets
+        // Personalização das cores dos foguetes
         noStroke();
         fill(255, 150);
-        //translate to the postion of rocket
+        // Traduzir para a posição do foguete
         translate(this.pos.x, this.pos.y);
-        //rotatates to the angle the rocket is pointing
+        // Gira para o ângulo ao qual o foguete está apontando
         rotate(this.vel.heading());
-        //creates a rectangle shape for rocket
+        // Cria uma forma retangular para o foguete
         rectMode(CENTER);
         rect(0, 0, 25, 5);
         pop();

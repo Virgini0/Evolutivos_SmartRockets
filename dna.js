@@ -1,41 +1,41 @@
 function DNA(genes) {
-    // Recieves genes and create a dna object
+    // Recebe os genes e cria um objeto de DNA
     if (genes) {
         this.genes = genes;
     }
-    // If no genes just create random dna
+    // Se não possui genes, então cria um DNA aleatório
     else {
         this.genes = [];
         for (var i = 0; i < lifespan; i++) {
-            // Gives random vectors
+            // Fornece vetores aleatórios
             this.genes[i] = p5.Vector.random2D();
-            // Sets maximum force of vector to be applied to a rocket
+            // Define a forma máxima do vetor a ser aplicada a um foguete
             this.genes[i].setMag(maxforce);
         }
     }
-    // Performs a crossover with another member of the species
+    // Realiza um cruzamento com outro membro da espécie
     this.crossover = function(partner) {
         var newgenes = [];
-        // Picks random midpoint
+        // Escolhe um ponto aleatório médio
         var mid = floor(random(this.genes.length));
         for (var i = 0; i < this.genes.length; i++) {
-            // If i is greater than mid the new gene should come from this partner
+            // Se i for maior do que a metade, o novo gene deve vir deste parceiro
             if (i > mid) {
                 newgenes[i] = this.genes[i];
             }
-            // If i < mid new gene should come from other partners gene's
+            // Se i for menor do que a metade, o novo gene deve vir de outros genes parceiros
             else {
                 newgenes[i] = partner.genes[i];
             }
         }
-        // Gives DNA object an array
+        // Fornece uma matriz ao objeto DNA
         return new DNA(newgenes);
     };
 
-    // Adds random mutation to the genes to add variance.
+    // Adiciona uma mutação aleatória aos genes para proporcionar uma variância entre eles
     this.mutation = function() {
         for (var i = 0; i < this.genes.length; i++) {
-            // if random number less than 0.01, new gene is then random vector
+            // Se o número aleatório for menor do que 0.01, então o novo gene é um vetor aleatório
             if (random(1) < 0.01) {
                 this.genes[i] = p5.Vector.random2D();
                 this.genes[i].setMag(maxforce);

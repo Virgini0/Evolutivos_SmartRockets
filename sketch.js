@@ -1,27 +1,27 @@
 var population;
-// Each rocket is alive till 500 frames
+// Cada foguete está ativo até os 500 frames
 var lifespan = 330;
-// Made to display count on screen
+// Feito para exibir a contagem na tela
 var lifeP;
-// Keeps track of frames
+// Mantém o controle de frames
 var count = 0;
-// Where rockets are trying to go
+// Para onde os foguetes estão tentando ir
 var target;
-// Max force applied to rocket
+// Força máxima aplicada ao foguete
 var maxforce = 0.6;
-//Count targets
+// Contador dos alvos
 var tgt = 0;
-/* Display is array with 5 positions, where:
-pos 0 = generation
-pos 1 = targets (generation)
-pos 2 = accuracy (generation)
-pos 3 = best generation
-pos 4 = best target (best generation)
-pos 5 = best acurracy (best generation)
+/* O display é uma matriz com 5 posições, sendo:
+pos 0 = geração
+pos 1 = alvos (geração)
+pos 2 = precisão (geração)
+pos 3 = melhor geração
+pos 4 = melhor alvo (melhor geração)
+pos 5 = melhor precisão (melhor geração)
 */
 var display = [0, 0, 0.00, 0, 0, 0.00]
 
-// Dimensions of barrier
+// Dimensões da barreira
 var rx = 400;
 var ry = 300;
 var rw = 200;
@@ -40,10 +40,10 @@ function draw() {
     let colorTarget = color(204, 153, 0);
     population.run();
 
-    // Displays count to window, decreasing
+    // Exibe a contagem até a janela, diminuindo
     document.getElementById("lt").innerText = 330 - count;
 
-    //Writing in the table pt1
+    // Escreve na tabela pt1
     document.getElementById("gen").innerText = display[0];
     document.getElementById("best_gen").innerText = display[3];
     document.getElementById("btgt").innerText = display[4];
@@ -61,14 +61,14 @@ function draw() {
         count = 0;
         display[1] = 0;
         tgt = 0;
-        //Delay in adding generation to show generation result
+        // Atraso na adição de geração a fim de mostrar o resultado da geração
         setTimeout(() => { display[0]++; }, 1000);
 
     }
-    // Renders barrier for rockets
+    // Renderiza a barreira de foguetes
     fill(colorBarrier);
     rect(rx, ry, rw, rh);
-    // Renders target
+    // Renderiza o alvo
     fill(colorTarget);
     ellipse(target.x, target.y, 16, 16);
 }

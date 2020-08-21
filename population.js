@@ -1,35 +1,35 @@
 function Population() {
-    // Array of rockets
+    // Matriz de foguetes
     this.rockets = [];
-    // Amount of rockets
+    // Quantidade de foguetes
     this.popsize = 35;
-    // Amount parent rocket partners
+    // Quantidade de parceiros do foguete pai
     this.matingpool = [];
 
-    // Associates a rocket to an array index
+    // Associa um foguete a um índice da matriz
     for (var i = 0; i < this.popsize; i++) {
         this.rockets[i] = new Rocket();
     }
 
     this.evaluate = function() {
         var maxfit = 0;
-        // Iterate through all rockets and calcultes their fitness
+        // Faz as iterações com todos os foguetes e calcula sua aptidão
         for (var i = 0; i < this.popsize; i++) {
-            // Calculates fitness
+            // Calcula a aptidão
             this.rockets[i].calcFitness();
-            // If current fitness is greater than max, then make max equal to current
+            // Se a aptidão atual for maior do que o máximo, então torna o máximo igual ao valor atual
             if (this.rockets[i].fitness > maxfit) {
                 maxfit = this.rockets[i].fitness;
             }
         }
-        // Normalises fitnesses
+        // Normaliza o fitness
         for (var i = 0; i < this.popsize; i++) {
             this.rockets[i].fitness /= maxfit;
         }
 
         this.matingpool = [];
-        // Take rockets fitness make in to scale of 1 to 100
-        // A rocket with high fitness will highly likely will be in the mating pool
+        // Pega o fitness dos foguetes em uma escala de 1 a 100
+        // Um foguete com alta aptidão muito provavelmente estará na piscina/conjunto de acasalamento
         for (var i = 0; i < this.popsize; i++) {
             var n = this.rockets[i].fitness * 100;
             for (var j = 0; j < n; j++) {
@@ -37,28 +37,28 @@ function Population() {
             }
         }
     };
-    // Selects appropriate genes for child
+    // Seleciona os genes apropriados para a criança
     this.selection = function() {
         var newRockets = [];
         for (var i = 0; i < this.rockets.length; i++) {
-            // Picks random dna
+            // Escolhe um DNA aleatório
             var parentA = random(this.matingpool).dna;
             var parentB = random(this.matingpool).dna;
-            // Creates child by using crossover function
+            // Cria um filho usando a função crossover
             var child = parentA.crossover(parentB);
             child.mutation();
-            // Creates new rocket with child dna
+            // Cria um novo foguete com o DNA do filho
             newRockets[i] = new Rocket(child);
         }
-        // This instance of rockets are the new rockets
+        // Essa instância de foguetes contem os novos foguetes
         this.rockets = newRockets;
     };
 
-    // Calls for update and show functions
+    // Solicita funções de atualização e exibição
     this.run = function() {
         for (var i = 0; i < this.popsize; i++) {
             this.rockets[i].update();
-            // Displays rockets to screen
+            // Exibe os foguetes na tela
             this.rockets[i].show();
         }
     };
