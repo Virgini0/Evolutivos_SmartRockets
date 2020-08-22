@@ -1,5 +1,5 @@
 var population;
-// Cada foguete está ativo até os 500 frames
+// Cada foguete está ativo até os 330 frames
 var lifespan = 330;
 // Feito para exibir a contagem na tela
 var lifeP;
