@@ -1,6 +1,6 @@
 # Evolutivos_SmartRockets
 Projeto com base em algoritmos genéticos.
-Link para o video explicando a aplicação:
+O vídeo de apresentação encontra-se nesta pasta.
 
 Integrantes: Diego da Silva Parra, Mateus Virginio Silva, Murilo Luz Stucki e Tainá Andrello Piai.
 
