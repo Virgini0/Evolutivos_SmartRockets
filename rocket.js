@@ -30,6 +30,7 @@ function Rocket(dna) {
         // Se o foguete atingir o alvo, então sua aptidão aumenta
         if (this.completed) {
             this.fitness *= 10;
+            this.taxa_mutacao = 0;
             tgt++;
             display[1] = tgt;
         }
