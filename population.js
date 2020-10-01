@@ -20,6 +20,7 @@ function Population() {
             // Se a aptidão atual for maior do que o máximo, então torna o máximo igual ao valor atual
             if (this.rockets[i].fitness > maxfit) {
                 maxfit = this.rockets[i].fitness;
+                max_i = i;
             }
         }
         // Normaliza o fitness
@@ -50,6 +51,7 @@ function Population() {
             // Cria um novo foguete com o DNA do filho
             newRockets[i] = new Rocket(child);
         }
+        newRockets[0] = this.rockets[max_i];
         // Essa instância de foguetes contem os novos foguetes
         this.rockets = newRockets;
     };
