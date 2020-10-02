@@ -9,10 +9,10 @@ var count = 0;
 var target;
 // Força máxima aplicada ao foguete
 var maxforce = 0.6;
-// Contador dos alvos
+// indice do melhor foguete
 var max_i = 0;
 
-var taxa_mutacao = 0.01
+var taxa_mutacao = 0.01;
 
 var tgt = 0;
 /* O display é uma matriz com 5 posições, sendo:
@@ -35,13 +35,23 @@ function setup() {
     createCanvas(1000, 500);
     population = new Population();
     lifeP = createP();
-    target = createVector(width / 2, 50);
+    target = createVector(floor(random(width)), floor(random(height)));
 }
 
 function draw() {
     background(51, 0, 0);
     let colorBarrier = color(153, 51, 0);
     let colorTarget = color(204, 153, 0);
+    if (count == 0) {
+        population.resetRockets();
+        // Muda a posicao do alvo quando atinge acuracia maior que 80%
+        if (display[5] >= 80) {
+            target = createVector(floor(random(width)), floor(random(height)));
+            display[4] = 0;
+            display[5] = 0.00;
+            taxa_mutacao = 0.01;
+        }
+    }
     population.run();
 
     // Exibe a contagem até a janela, diminuindo

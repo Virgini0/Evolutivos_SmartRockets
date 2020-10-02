@@ -13,6 +13,7 @@ function Population() {
 
     this.evaluate = function() {
         var maxfit = 0;
+        
         // Faz as iterações com todos os foguetes e calcula sua aptidão
         for (var i = 0; i < this.popsize; i++) {
             // Calcula a aptidão
@@ -42,7 +43,6 @@ function Population() {
     // Seleciona os genes apropriados para a criança
     this.selection = function() {
         var newRockets = [];
-        //newRockets[0] = this.rockets[max_i];
         for (var i = 0; i < this.rockets.length; i++) {
             // Escolhe um DNA aleatório
             var parentA = random(this.matingpool).dna;
@@ -53,7 +53,8 @@ function Population() {
             // Cria um novo foguete com o DNA do filho
             newRockets[i] = new Rocket(child);
         }
-        //newRockets[0] = this.rockets[max_i];
+        newRockets[0] = this.rockets[max_i];
+        
         // Essa instância de foguetes contem os novos foguetes
         this.rockets = newRockets;
     };
@@ -64,6 +65,13 @@ function Population() {
             this.rockets[i].update();
             // Exibe os foguetes na tela
             this.rockets[i].show();
+        }
+    };
+
+    // Reseta as posicoes dos foguetes
+    this.resetRockets = function() {
+        for (var i = 0; i < this.popsize; i++) {
+            this.rockets[i].reset();
         }
     };
 }
