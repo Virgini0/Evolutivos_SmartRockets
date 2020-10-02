@@ -3,8 +3,7 @@ Projeto com base em algoritmos genéticos.
 O vídeo de apresentação encontra-se neste mesmo repositório.
 Data de desenvolvimento: 2020-1.
 
-# APRESENTAÇÃO EM VÍDEO:
-https://drive.google.com/file/d/1RTAmSo8a1OeqWQXv5Fyt4MmtRLO5XXIz/view?usp=sharing
+**APRESENTAÇÃO EM VÍDEO:** https://drive.google.com/file/d/1RTAmSo8a1OeqWQXv5Fyt4MmtRLO5XXIz/view?usp=sharing
 
 Integrantes: Diego da Silva Parra, Mateus Virginio Silva, Murilo Luz Stucki e Tainá Andrello Piai.
 
