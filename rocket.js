@@ -30,7 +30,7 @@ function Rocket(dna) {
         // Se o foguete atingir o alvo, então sua aptidão aumenta
         if (this.completed) {
             this.fitness *= 50;
-            this.taxa_mutacao = 0;
+            taxa_mutacao = 0;
             tgt++;
             display[1] = tgt;
         }
@@ -46,15 +46,21 @@ function Rocket(dna) {
     document.getElementById("tgt").innerText = display[1];
     document.getElementById("acc").innerText = display[2];
 
+    // Reseta a posicao do foguete
+    this.reset = function() {
+        this.pos = createVector(width / 2, height);
+    };
+
     // Atualiza o estado do foguete
     this.update = function() {
         // Verifica a distância do foguete ao alvo
         var d = dist(this.pos.x, this.pos.y, target.x, target.y);
-        // Se a distância for inferior a 10 pixels, entao o alvo atingiu o alvo
+        // Se a distância for inferior a 10 pixels, entao o foguete atingiu o alvo
         if (d < 10) {
             this.completed = true;
             this.pos = target.copy();
-        }
+        }else  
+            this.completed = false;
         // Foguete atingiu a barreira
         if (
             this.pos.x > rx &&

@@ -31,19 +31,19 @@ function DNA(genes) {
             }
         }
         */
-        var moeda = random() % 100;
-        //pra mae
-        if (moeda < 50) {
-            for (var i = 0; i < this.genes.length; i++) {
+        var moeda = 0;
+        for (var i = 0; i < this.genes.length; i++){
+            moeda = random() % 100;
+            //pra mae
+            if (moeda < 50) {
                 newgenes[i] = this.genes[i];
             }
-        }
-        //pro pai
-        else {
-            for (var i = 0; i < this.partner.length; i++) {
+            //pro pai
+            else {
                 newgenes[i] = partner.genes[i];
             }
         }
+       
         // Fornece uma matriz ao objeto DNA
         return new DNA(newgenes);
     };
