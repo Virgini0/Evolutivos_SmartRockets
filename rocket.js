@@ -29,7 +29,8 @@ function Rocket(dna) {
         this.fitness = map(d, 0, width, width, 0);
         // Se o foguete atingir o alvo, então sua aptidão aumenta
         if (this.completed) {
-            this.fitness *= 10;
+            this.fitness *= 50;
+            this.taxa_mutacao = 0;
             tgt++;
             display[1] = tgt;
         }
@@ -39,7 +40,7 @@ function Rocket(dna) {
         }
     };
     // Calcula a precisão
-    display[2] = (display[1] / 35).toFixed(2);
+    display[2] = ((display[1] / 35).toFixed(2)) * 100;
 
     // Escrita na tabela pt2 - Exibir o número de alvos e exibir a precisão
     document.getElementById("tgt").innerText = display[1];

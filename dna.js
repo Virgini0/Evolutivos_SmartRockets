@@ -13,10 +13,12 @@ function DNA(genes) {
             this.genes[i].setMag(maxforce);
         }
     }
+
     // Realiza um cruzamento com outro membro da espécie
     this.crossover = function(partner) {
         var newgenes = [];
         // Escolhe um ponto aleatório médio
+        /*
         var mid = floor(random(this.genes.length));
         for (var i = 0; i < this.genes.length; i++) {
             // Se i for maior do que a metade, o novo gene deve vir deste parceiro
@@ -28,6 +30,20 @@ function DNA(genes) {
                 newgenes[i] = partner.genes[i];
             }
         }
+        */
+        var moeda = random() % 100;
+        //pra mae
+        if (moeda < 50) {
+            for (var i = 0; i < this.genes.length; i++) {
+                newgenes[i] = this.genes[i];
+            }
+        }
+        //pro pai
+        else {
+            for (var i = 0; i < this.partner.length; i++) {
+                newgenes[i] = partner.genes[i];
+            }
+        }
         // Fornece uma matriz ao objeto DNA
         return new DNA(newgenes);
     };
@@ -36,7 +52,7 @@ function DNA(genes) {
     this.mutation = function() {
         for (var i = 0; i < this.genes.length; i++) {
             // Se o número aleatório for menor do que 0.01, então o novo gene é um vetor aleatório
-            if (random(1) < 0.01) {
+            if (random(1) < taxa_mutacao) {
                 this.genes[i] = p5.Vector.random2D();
                 this.genes[i].setMag(maxforce);
             }

@@ -10,6 +10,10 @@ var target;
 // Força máxima aplicada ao foguete
 var maxforce = 0.6;
 // Contador dos alvos
+var max_i = 0;
+
+var taxa_mutacao = 0.01
+
 var tgt = 0;
 /* O display é uma matriz com 5 posições, sendo:
 pos 0 = geração
